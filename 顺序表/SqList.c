@@ -14,91 +14,91 @@ typedef struct
     int length;
 }SqList;
 
-Status InitList(SqList *L){ //³õÊ¼»¯ÏßĞÔ±í
+Status InitList(SqList *L){ //åˆå§‹åŒ–çº¿æ€§è¡¨
     L->length = 0;
     return OK;
 }
 
-Status ListEmpty(SqList L){ //ÅĞ¶ÏÏßĞÔ±íÊÇ·ñÎª¿Õ
+Status ListEmpty(SqList L){ //åˆ¤æ–­çº¿æ€§è¡¨æ˜¯å¦ä¸ºç©º
     if(L.length == 0)
         return TRUE;
     return FALSE;
 }
 
-int ListLength(SqList L){   //·µ»ØÏßĞÔ±í³¤¶È
+int ListLength(SqList L){   //è¿”å›çº¿æ€§è¡¨é•¿åº¦
     return L.length;
 }
 
-Status GetElem(SqList L, int i, ElemType *e){   //°´Î»ÖÃ²éÕÒÔªËØ£¬½«ÔªËØ±£´æÔÚeÖĞ
-    if(L.length == 0 || i<1 || i>L.length){ //ÅĞ¶ÏÏßĞÔ±íÊÇ·ñÎª¿Õ£¬ÒÔ¼°²éÕÒÎ»ÖÃÊÇ·ñºÏ·¨ĞÔ
+Status GetElem(SqList L, int i, ElemType *e){   //æŒ‰ä½ç½®æŸ¥æ‰¾å…ƒç´ ï¼Œå°†å…ƒç´ ä¿å­˜åœ¨eä¸­
+    if(L.length == 0 || i<1 || i>L.length){ //åˆ¤æ–­çº¿æ€§è¡¨æ˜¯å¦ä¸ºç©ºï¼Œä»¥åŠæŸ¥æ‰¾ä½ç½®æ˜¯å¦åˆæ³•æ€§
         return ERROR;
     }
-    *e = L.data[i-1];   //½«¸ÃÔªËØ±£´æÔÚeÖĞ
+    *e = L.data[i-1];   //å°†è¯¥å…ƒç´ ä¿å­˜åœ¨eä¸­
     return OK;
 }
 
-Status ListInsert(SqList *L, int i, ElemType e){ //°´Î»ÖÃ²åÈëÖ¸¶¨ÔªËØ
-    if(L->length == MAXSIZE || i<1 || i>L->length+1){   //ÅĞ¶ÏÏßĞÔ±íÊÇ·ñÒÑÂú£¬ÒÔ¼°²åÈëÎ»ÖÃºÏ·¨ĞÔ
+Status ListInsert(SqList *L, int i, ElemType e){ //æŒ‰ä½ç½®æ’å…¥æŒ‡å®šå…ƒç´ 
+    if(L->length == MAXSIZE || i<1 || i>L->length+1){   //åˆ¤æ–­çº¿æ€§è¡¨æ˜¯å¦å·²æ»¡ï¼Œä»¥åŠæ’å…¥ä½ç½®åˆæ³•æ€§
         return ERROR;
     }   
     if(i<L->length){
-        for(int k=L->length+1;k>i;k--){     //ÈôÔÚÏßĞÔ±íÖ®Ç°²åÈëÔªËØ£¬Ôò½«µÚiÎ»ÖÃÒÔ¼°Ö®ºóµÄÔªËØÏòºóÒÆ¶¯Ò»Î»
+        for(int k=L->length+1;k>i;k--){     //è‹¥åœ¨çº¿æ€§è¡¨ä¹‹å‰æ’å…¥å…ƒç´ ï¼Œåˆ™å°†ç¬¬iä½ç½®ä»¥åŠä¹‹åçš„å…ƒç´ å‘åç§»åŠ¨ä¸€ä½
             L->data[k-1] = L->data[k-2];    
         }
     }
     L->data[i-1] = e;
-    L->length++;    //³¤¶È¼Ó 1
+    L->length++;    //é•¿åº¦åŠ  1
     return OK;
 }
 
-Status ListDelete(SqList *L, int i, ElemType *e){   //°´Ö¸¶¨Î»ÖÃÉ¾³ıÔªËØ
-    if(L->length == 0 || i<1 || i>L->length){   //ÅĞ¶ÏÏßĞÔ±íÊÇ·ñÎª¿Õ£¬ÒÔ¼°É¾³ıÎ»ÖÃµÄºÏ·¨ĞÔ
+Status ListDelete(SqList *L, int i, ElemType *e){   //æŒ‰æŒ‡å®šä½ç½®åˆ é™¤å…ƒç´ 
+    if(L->length == 0 || i<1 || i>L->length){   //åˆ¤æ–­çº¿æ€§è¡¨æ˜¯å¦ä¸ºç©ºï¼Œä»¥åŠåˆ é™¤ä½ç½®çš„åˆæ³•æ€§
         return ERROR;
     }
     *e = L->data[i-1];
     if(i<L->length){    
         for(int k = i ;k>L->length;k++){
-            L->data[k-1] = L->data[k];  //ÈôÔÚÏßĞÔ±íÖ®Ç°É¾³ıÔªËØ£¬Ôò½«µÚiÒÔºóµÄÔªËØÏòÇ°ÒÆ¶¯Ò»Î»
+            L->data[k-1] = L->data[k];  //è‹¥åœ¨çº¿æ€§è¡¨ä¹‹å‰åˆ é™¤å…ƒç´ ï¼Œåˆ™å°†ç¬¬iä»¥åçš„å…ƒç´ å‘å‰ç§»åŠ¨ä¸€ä½
         }
     }
-    L->length--;    //³¤¶È¼õ 1
+    L->length--;    //é•¿åº¦å‡ 1
     return OK;
 }
 
-int LocateElem(SqList L, ElemType e){   //²éÕÒÏßĞÔ±íÖĞÊÇ·ñ°üº¬¸ÃÔªËØ
+int LocateElem(SqList L, ElemType e){   //æŸ¥æ‰¾çº¿æ€§è¡¨ä¸­æ˜¯å¦åŒ…å«è¯¥å…ƒç´ 
     for(int i = 1; i <= L.length; i++){
         if(e == L.data[i-1]){
-            return i;   //·µ»ØÔªËØÎ»ÖÃ
+            return i;   //è¿”å›å…ƒç´ ä½ç½®
         }
     }
-    return 0;   //²éÕÒÊ§°Ü£¬²»°üº¬¸ÃÔªËØ
+    return 0;   //æŸ¥æ‰¾å¤±è´¥ï¼Œä¸åŒ…å«è¯¥å…ƒç´ 
 }
 
-Status ClearList(SqList *L){    //Çå¿ÕÏßĞÔ±í
+Status ClearList(SqList *L){    //æ¸…ç©ºçº¿æ€§è¡¨
     L->length = 0;
     return OK;
 }
 
-int main(void){  //ÏßĞÔ±í²âÊÔ
+int main(void){  //çº¿æ€§è¡¨æµ‹è¯•
     SqList L;
     ElemType e;
-    InitList(&L);   //³õÊ¼»¯ÏßĞÔ±í
+    InitList(&L);   //åˆå§‹åŒ–çº¿æ€§è¡¨
 
-    ListInsert(&L, 1, 1);   //²åÈëÔªËØ
+    ListInsert(&L, 1, 1);   //æ’å…¥å…ƒç´ 
     ListInsert(&L, 2, 8);
     ListInsert(&L, 3, 5);
  
-    printf("\n        ÏßĞÔ±í£º");
+    printf("\n        çº¿æ€§è¡¨ï¼š");
     for(int i=1; i<=L.length;i++){  
         GetElem(L, i, &e);
         printf("%d ", e);
     }
 
-    printf("\n  ÏßĞÔ±íµÄ³¤¶È£º %d",ListLength(L));
+    printf("\n  çº¿æ€§è¡¨çš„é•¿åº¦ï¼š %d",ListLength(L));
 
-    printf("\n²éÕÒÔªËØµÄÎ»ÖÃ£º %d ", LocateElem(L, 8)); 
+    printf("\næŸ¥æ‰¾å…ƒç´ çš„ä½ç½®ï¼š %d ", LocateElem(L, 8)); 
 
-    ClearList(&L);  //Çå¿ÕÏßĞÔ±í
+    ClearList(&L);  //æ¸…ç©ºçº¿æ€§è¡¨
     printf("\n\n");
     return 0;
 }
