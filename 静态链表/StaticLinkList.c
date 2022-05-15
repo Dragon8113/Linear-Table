@@ -117,7 +117,7 @@ Status ClearList(StaticLinklist L){     //清空静态链表
 }
 
 int main(void){     //静态链表测试
-    printf("/n/n");
+    printf("\n");
     StaticLinklist L;
     ElemType e;
 
