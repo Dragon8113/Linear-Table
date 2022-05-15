@@ -96,7 +96,7 @@ int main(void){  //线性表测试
 
     printf("\n  线性表的长度： %d",ListLength(L));
 
-    printf("\n查找元素的位置： %d ", LocateElem(L, 8)); 
+    printf("\n查找元素的位置:  %d ", LocateElem(L, 8)); 
 
     ClearList(&L);  //清空线性表
     printf("\n\n");

@@ -127,15 +127,15 @@ Status GetElem(LinkList L, int i, ElemType *e){         //指定位置 i ，保�
 }
 
 int LocateElem(LinkList L, ElemType e){                 //指定元素 e ，返回元素节点位置
-    int i = 0;
+    int i = 1;
     L = L->next; //指向第一个元素
     while (L != NULL)   //判断指向是否为NULL
     {
-        i++;
         if(L->data == e){   //判断指向元素是否等于 e;
             return i;
         }
         L = L->next;
+        i++;
     }
     return FALSE;
 }
